@@ -1,5 +1,23 @@
 [
   {
+    "id": "chat_1774941398434",
+    "title": "What are the placement statistics at MITK?",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What are the placement statistics at MITK?",
+        "timestamp": "2026-03-31T07:10:27.701Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<p>That's a great question! MITK has a dedicated Placement Cell committed to helping students achieve their career goals.</p><p>While specific placement statistics aren't available in my current information, I encourage you to reach out to the institute directly for the most up-to-date details on placements and successful career paths of our graduates.</p><p>You can contact them at:\n<ul><li>  <strong>Phone:</strong> +91-8254-237630</li>\n<li>  <strong>Email:</strong> info@mitkundapura.com</li>\n<li>  <strong>Website:</strong> https://www.mitkundapura.com</li></ul></p><p>They'll be happy to provide you with comprehensive information!</p>",
+        "timestamp": "2026-03-31T07:10:30.811Z"
+      }
+    ],
+    "createdAt": "2026-03-31T07:16:38.434Z",
+    "updatedAt": "2026-03-31T07:16:38.434Z"
+  },
+  {
     "id": "chat_1774940756943",
     "title": "What are the CSE semester 3 subjects?",
     "messages": [
