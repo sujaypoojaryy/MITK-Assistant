@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MITK AI Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+</head>
+
+<body class="dark-theme">
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <img src="mitk_logo_png.png" alt="MITK Logo" class="logo-image" style="width: 32px; height: 32px; border-radius: 8px;">
+                    <span class="logo-text">MITK AI</span>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search chats" aria-label="Search chats">
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">
+                    <span class="nav-icon"></span> Home
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon"></span> Explore
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon"></span> History
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon"></span> Resources
+                </a>
+                <a href="#" class="nav-item nav-item--contribute" id="contributeNavBtn">
+                    <span class="nav-icon"></span> Contribute
+                </a>
+            </nav>
+
+            <div class="sidebar-history">
+                <div class="history-section">
+                    <h4>Recent Chats</h4>
+                    <p class="history-empty">No conversations yet</p>
+                </div>
+            </div>
+
+            <button id="newChatFab" class="sidebar-new-chat">
+                <span>+</span> New Chat
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <button class="menu-toggle" aria-label="Toggle Sidebar">☰</button>
+                <div class="header-dropdown">
+                    AI Assistant <span class="chevron">▼</span>
+                </div>
+                <div class="header-actions" style="display: flex; gap: 8px;">
+                    <button id="themeToggle" class="btn btn--outline" title="Toggle Theme">
+                        Light Mode
+                    </button>
+                    <button id="languageToggle" class="btn btn--outline" title="Switch Language">
+                        English
+                    </button>
+                </div>
+            </header>
+
+            <!-- Initial State / Default View -->
+            <div class="initial-view" id="initialView">
+                <div class="centered-welcome">
+                    <div class="hologram-orb"></div>
+                    <h2 id="greetingText">Good Evening, Student.</h2>
+                    <h1>Can I help you with anything?</h1>
+                </div>
+
+                <div class="input-container elevated-input">
+                    <textarea id="messageInput" placeholder="Message AI Chat..." rows="1"></textarea>
+
+                    <div class="input-actions-bottom">
+                        <button class="action-btn" title="Attach file">📎</button>
+                        <button id="sendBtn" class="send-btn primary-btn" title="Send message">&#9658;</button>
+                    </div>
+                </div>
+
+                <div class="suggestions-row">
+                    <div class="suggestion-card" onclick="sendSuggestion('What are the CSE semester 3 subjects?')">
+                        <h3>&#128218; Syllabus Check</h3>
+                        <p>View the subjects and syllabus for your current semester.</p>
+                    </div>
+                    <div class="suggestion-card" onclick="sendSuggestion('Download Mechanical previous year papers')">
+                        <h3>&#128196; Exam Papers</h3>
+                        <p>Find previous year question papers and study materials.</p>
+                    </div>
+                    <div class="suggestion-card" onclick="sendSuggestion('What are the placement statistics at MITK?')">
+                        <h3>&#127919; Placements</h3>
+                        <p>Learn about recent campus placements and top recruiters.</p>
+                    </div>
+                    <div class="suggestion-card" onclick="sendSuggestion('Tell me about hostel facilities at MITK')">
+                        <h3>&#127968; Campus Life</h3>
+                        <p>Explore hostel, sports, clubs and other campus facilities.</p>
+                    </div>
+                    <div class="suggestion-card" onclick="sendSuggestion('What courses does MITK offer?')">
+                        <h3>&#127979; Courses</h3>
+                        <p>Discover undergraduate and postgraduate programs available.</p>
+                    </div>
+                    <div class="suggestion-card" onclick="sendSuggestion('How to get admission at MITK?')">
+                        <h3>&#128203; Admissions</h3>
+                        <p>Step-by-step guide to the admission process and eligibility.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat View (Hidden initially) -->
+            <div class="chat-view hidden" id="chatView">
+                <div id="chatMessages" class="chat-messages">
+                    <!-- Messages go here -->
+                </div>
+
+                <div id="typingIndicator" class="typing-indicator hidden">
+                    <div class="typing-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <span class="typing-text">AI is thinking...</span>
+                </div>
+
+                <div class="chat-input-wrapper">
+                    <div class="input-container elevated-input">
+                        <textarea id="chatMessageInput" placeholder="Message AI Chat..." rows="1"></textarea>
+
+                        <div class="input-actions-bottom">
+                            <button class="action-btn" title="Attach file">📎</button>
+                            <button id="chatSendBtn" class="send-btn primary-btn" title="Send message">▶</button>
+                        </div>
+                    </div>
+                    <div class="status-text" id="statusText">online</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Confidence Modal -->
+    <div id="confidenceModal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content dark-modal">
+            <div class="modal-header">
+                <h3>Response Confidence</h3>
+                <button class="modal-close" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Content will be dynamically added -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Contribution Modal -->
+    <div id="contributeModal" class="contrib-modal hidden" role="dialog" aria-modal="true"
+        aria-labelledby="contributeModalTitle">
+        <div class="contrib-backdrop" id="contributeBackdrop"></div>
+        <div class="contrib-panel">
+
+            <!-- Header -->
+            <div class="contrib-header">
+                <div class="contrib-header-left">
+                    <div class="contrib-icon-wrap"></div>
+                    <div>
+                        <h2 id="contributeModalTitle">Contribute a Paper</h2>
+                        <p>Help fellow students by sharing question papers &amp; model papers</p>
+                    </div>
+                </div>
+                <button class="contrib-close" id="contributeCloseBtn" aria-label="Close">&times;</button>
+            </div>
+
+            <!-- Success State -->
+            <div class="contrib-success hidden" id="contributeSuccess">
+                <div class="contrib-success-icon"></div>
+                <h3>Submission Received!</h3>
+                <p>Thank you for contributing. Our team will review your paper and add it to the library.</p>
+                <button class="contrib-submit-btn" id="contributeAnotherBtn">Upload Another</button>
+            </div>
+
+            <!-- Form -->
+            <form class="contrib-form" id="contributeForm" enctype="multipart/form-data">
+
+                <!-- Drop Zone -->
+                <div class="contrib-dropzone" id="contributeDropzone">
+                    <div class="dropzone-idle" id="dropzoneIdle">
+                        <div class="dropzone-icon">📄</div>
+                        <p class="dropzone-title">Drag &amp; drop your PDF here</p>
+                        <p class="dropzone-sub">or <label for="fileInput" class="dropzone-browse">browse files</label>
+                        </p>
+                        <p class="dropzone-hint">PDF only · Max 20 MB</p>
+                    </div>
+                    <div class="dropzone-preview hidden" id="dropzonePreview">
+                        <span class="preview-icon">📎</span>
+                        <span class="preview-name" id="previewName">file.pdf</span>
+                        <button type="button" class="preview-remove" id="removeFileBtn"
+                            aria-label="Remove file">&times;</button>
+                    </div>
+                    <input type="file" id="fileInput" name="file" accept=".pdf,application/pdf" class="hidden" required>
+                </div>
+
+                <!-- Form Fields -->
+                <div class="contrib-fields">
+
+                    <!-- Paper Type -->
+                    <div class="contrib-field-group">
+                        <label class="contrib-label">Paper Type <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="paperType" value="question-paper" checked>
+                                <span class="radio-custom"></span>
+                                📝 Question Paper
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="paperType" value="model-paper">
+                                <span class="radio-custom"></span>
+                                📒 Model Paper
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Row: Branch + Semester -->
+                    <div class="contrib-row">
+                        <div class="contrib-field-group">
+                            <label class="contrib-label" for="contrib-branch">Branch <span
+                                    class="required">*</span></label>
+                            <select id="contrib-branch" name="branch" class="contrib-select" required>
+                                <option value="" disabled selected>Select branch</option>
+                                <option value="CSE">CSE – Computer Science</option>
+                                <option value="ECE">ECE – Electronics</option>
+                                <option value="ME">ME – Mechanical</option>
+                                <option value="CE">CE – Civil</option>
+                                <option value="AIML">AI/ML</option>
+                            </select>
+                        </div>
+                        <div class="contrib-field-group">
+                            <label class="contrib-label" for="contrib-semester">Semester <span
+                                    class="required">*</span></label>
+                            <select id="contrib-semester" name="semester" class="contrib-select" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                                <option value="7">Semester 7</option>
+                                <option value="8">Semester 8</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Subject + Year -->
+                    <div class="contrib-row">
+                        <div class="contrib-field-group">
+                            <label class="contrib-label" for="contrib-subject">Subject</label>
+                            <input type="text" id="contrib-subject" name="subject" class="contrib-input"
+                                placeholder="e.g. Data Structures">
+                        </div>
+                        <div class="contrib-field-group">
+                            <label class="contrib-label" for="contrib-year">Year</label>
+                            <input type="text" id="contrib-year" name="year" class="contrib-input"
+                                placeholder="e.g. 2023">
+                        </div>
+                    </div>
+
+                    <!-- Name + Email -->
+                    <div class="contrib-row">
+                        <div class="contrib-field-group">
+                            <label class="contrib-label" for="contrib-name">Your Name</label>
+                            <input type="text" id="contrib-name" name="contributorName" class="contrib-input"
+                                placeholder="Optional">
+                        </div>
+                        <div class="contrib-field-group">
+                            <label class="contrib-label" for="contrib-email">Email</label>
+                            <input type="email" id="contrib-email" name="contributorEmail" class="contrib-input"
+                                placeholder="Optional">
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Error message -->
+                <div class="contrib-error hidden" id="contributeError"></div>
+
+                <!-- Submit -->
+                <button type="submit" class="contrib-submit-btn" id="contributeSubmitBtn">
+                    <span id="contributeSubmitLabel">Submit Contribution</span>
+                    <span class="contrib-spinner hidden" id="contributeSpinner"></span>
+                </button>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast hidden" id="toastNotification">
+        <span class="toast-icon">✅</span>
+        <span class="toast-msg" id="toastMsg">Submitted successfully!</span>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+
+</html>

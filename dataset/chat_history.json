@@ -1,0 +1,76 @@
+[
+  {
+    "id": "chat_1774940756943",
+    "title": "What are the CSE semester 3 subjects?",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What are the CSE semester 3 subjects?",
+        "timestamp": "2026-03-31T07:05:44.576Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<p>Hello! You're looking for the subjects for CSE, Semester 3.</p><p>I'm searching for the relevant files (like the syllabus or subject list) for you now. The system will automatically attach download links if they are available.</p><p>📚 I found 5 relevant document(s) for you. Check the download section below.</p>",
+        "timestamp": "2026-03-31T07:05:47.169Z"
+      }
+    ],
+    "createdAt": "2026-03-31T07:05:56.943Z",
+    "updatedAt": "2026-03-31T07:05:56.943Z"
+  },
+  {
+    "id": "chat_1774940503713",
+    "title": "Tell me about hostel facilities at MITK",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Tell me about hostel facilities at MITK",
+        "timestamp": "2026-03-31T07:01:30.313Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<p>MITK is pleased to offer well-maintained <strong>hostel facilities</strong> for its students. We strive to provide a comfortable and conducive living environment.</p>",
+        "timestamp": "2026-03-31T07:01:32.738Z"
+      },
+      {
+        "role": "user",
+        "content": "hii",
+        "timestamp": "2026-03-31T07:01:38.145Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<p>Hello! Welcome to Moodlakatte Institute of Technology, Kundapura (MITK).</p><p>How can I assist you today? Feel free to ask any questions you have!</p>",
+        "timestamp": "2026-03-31T07:01:40.326Z"
+      }
+    ],
+    "createdAt": "2026-03-31T07:01:43.713Z",
+    "updatedAt": "2026-03-31T07:01:43.713Z"
+  },
+  {
+    "id": "chat_1774940486244",
+    "title": "What are the CSE semester 3 subjects?",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What are the CSE semester 3 subjects?",
+        "timestamp": "2026-03-31T07:00:44.798Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<p>That's a great question! You're looking for the subjects for CSE, Semester 3.</p><p>I'm searching for the relevant files now.</p><p>📚 I found 5 relevant document(s) for you. Check the download section below.</p>",
+        "timestamp": "2026-03-31T07:00:48.354Z"
+      },
+      {
+        "role": "user",
+        "content": "sub list",
+        "timestamp": "2026-03-31T07:01:08.563Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<p>You're looking for the subject list! Based on our last chat, I'm searching for the subjects for CSE, Semester 3.</p><p>I'm searching for the relevant files now.</p><p>📚 I found 5 relevant document(s) for you. Check the download section below.</p>",
+        "timestamp": "2026-03-31T07:01:12.517Z"
+      }
+    ],
+    "createdAt": "2026-03-31T07:01:26.244Z",
+    "updatedAt": "2026-03-31T07:01:26.244Z"
+  }
+]
