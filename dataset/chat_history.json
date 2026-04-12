@@ -1,5 +1,23 @@
 [
   {
+    "id": "chat_1775921051167",
+    "title": "What courses does MITK offer?",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What courses does MITK offer?",
+        "timestamp": "2026-04-11T15:23:13.265Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<p>I'm currently in offline mode, but I can help you with basic queries. Please ensure the backend is running to search for files or access Gemini AI.</p>",
+        "timestamp": "2026-04-11T15:23:14.094Z"
+      }
+    ],
+    "createdAt": "2026-04-11T15:24:11.167Z",
+    "updatedAt": "2026-04-11T15:24:11.167Z"
+  },
+  {
     "id": "chat_1774941398434",
     "title": "What are the placement statistics at MITK?",
     "messages": [
@@ -89,6 +107,6 @@
       }
     ],
     "createdAt": "2026-03-31T07:01:26.244Z",
-    "updatedAt": "2026-03-31T07:01:26.244Z"
+    "updatedAt": "2026-04-12T10:39:17.672Z"
   }
 ]

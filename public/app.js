@@ -159,7 +159,37 @@ function setupEventListeners() {
     if (searchInput) {
         searchInput.addEventListener('input', () => {
             const query = searchInput.value.toLowerCase();
-            document.querySelectorAll('.sidebar-history .history-item').forEach(el => {
+            document.querySelectorAll('.sidebar .sidebar-history .history-item').forEach(el => {
+                const title = el.querySelector('.history-item-title')?.textContent?.toLowerCase() || '';
+                el.style.display = title.includes(query) ? '' : 'none';
+            });
+        });
+    }
+
+    // Modal buttons (History)
+    const historyNavBtn = document.getElementById('historyNavBtn');
+    const historyModal = document.getElementById('historyModal');
+    const historyCloseBtn = document.getElementById('historyCloseBtn');
+    const historyBackdrop = document.getElementById('historyBackdrop');
+    
+    if (historyNavBtn && historyModal) {
+        historyNavBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            historyModal.classList.remove('hidden');
+        });
+    }
+    const closeHistoryModal = () => {
+        if (historyModal) historyModal.classList.add('hidden');
+    }
+    if (historyCloseBtn) historyCloseBtn.addEventListener('click', closeHistoryModal);
+    if (historyBackdrop) historyBackdrop.addEventListener('click', closeHistoryModal);
+
+    // History Modal Search
+    const historyModalSearchInput = document.getElementById('historyModalSearchInput');
+    if (historyModalSearchInput && historyModal) {
+        historyModalSearchInput.addEventListener('input', () => {
+            const query = historyModalSearchInput.value.toLowerCase();
+            historyModal.querySelectorAll('.history-item').forEach(el => {
                 const title = el.querySelector('.history-item-title')?.textContent?.toLowerCase() || '';
                 el.style.display = title.includes(query) ? '' : 'none';
             });
@@ -762,8 +792,8 @@ function showToast(msg) {
 // ============================================================
 
 async function loadChatHistory() {
-    const historyContainer = document.querySelector('.sidebar-history');
-    if (!historyContainer) return;
+    const historyContainers = document.querySelectorAll('.sidebar-history');
+    if (!historyContainers.length) return;
 
     try {
         const resp = await fetch(`${BACKEND_CONFIG.BASE_URL}/api/history`);
@@ -771,10 +801,12 @@ async function loadChatHistory() {
         if (!data.success) throw new Error('Failed');
 
         const sessions = data.sessions || [];
-        renderHistorySidebar(sessions, historyContainer);
+        historyContainers.forEach(container => renderHistorySidebar(sessions, container));
     } catch (err) {
         console.warn('Could not load chat history:', err.message);
-        historyContainer.innerHTML = '<div class="history-section"><h4>History</h4><p class="history-empty">Unable to load</p></div>';
+        historyContainers.forEach(container => {
+            container.innerHTML = '<div class="history-section"><h4>History</h4><p class="history-empty">Unable to load</p></div>';
+        });
     }
 }
 

@@ -19,10 +19,9 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <div class="logo-container">
-                    <img src="mitk_logo_png.png" alt="MITK Logo" class="logo-image" style="width: 32px; height: 32px; border-radius: 8px;">
-                    <span class="logo-text">MITK AI</span>
-                </div>
+
+                <span class="logo-text">MITK AI</span>
+
             </div>
 
             <div class="search-bar">
@@ -34,14 +33,11 @@
                 <a href="#" class="nav-item active">
                     <span class="nav-icon"></span> Home
                 </a>
-                <a href="#" class="nav-item">
+                <a href="https://www.mitkundapura.com/" target="_blank" class="nav-item">
                     <span class="nav-icon"></span> Explore
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" id="historyNavBtn">
                     <span class="nav-icon"></span> History
-                </a>
-                <a href="#" class="nav-item">
-                    <span class="nav-icon"></span> Resources
                 </a>
                 <a href="#" class="nav-item nav-item--contribute" id="contributeNavBtn">
                     <span class="nav-icon"></span> Contribute
@@ -64,10 +60,7 @@
         <main class="main-content">
             <header class="main-header">
                 <button class="menu-toggle" aria-label="Toggle Sidebar">☰</button>
-                <div class="header-dropdown">
-                    AI Assistant <span class="chevron">▼</span>
-                </div>
-                <div class="header-actions" style="display: flex; gap: 8px;">
+                <div class="header-actions" style="display: flex; gap: 8px; margin-left: auto;">
                     <button id="themeToggle" class="btn btn--outline" title="Toggle Theme">
                         Light Mode
                     </button>
@@ -302,6 +295,28 @@
                 </button>
 
             </form>
+        </div>
+    </div>
+
+    <!-- History Modal -->
+    <div id="historyModal" class="modal hidden">
+        <div class="modal-backdrop" id="historyBackdrop"></div>
+        <div class="modal-content dark-modal">
+            <div class="modal-header">
+                <h3>Chat History</h3>
+                <button class="modal-close" id="historyCloseBtn" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="search-bar" style="margin-bottom: 20px;">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="historyModalSearchInput" placeholder="Search history..."
+                        aria-label="Search history"
+                        style="width: 100%; background: none; border: none; color: inherit; outline: none;">
+                </div>
+                <div class="sidebar-history" style="max-height: 50vh; overflow-y: auto;" id="modalHistoryContainer">
+                    <!-- Rendered by app.js -->
+                </div>
+            </div>
         </div>
     </div>
 
